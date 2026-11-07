@@ -1,0 +1,276 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodShare AI | Login</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+        }
+
+        .container {
+            display: flex;
+            width: 850px;
+            min-height: 520px;
+            background: white;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.12);
+        }
+
+        .left {
+            width: 45%;
+            background: #176b45;
+            color: white;
+            padding: 55px 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .left h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        .left p {
+            font-size: 15px;
+            line-height: 1.7;
+            color: #e0f2e9;
+        }
+
+        .icon {
+            font-size: 65px;
+            margin-bottom: 25px;
+        }
+
+        .right {
+            width: 55%;
+            padding: 55px 45px;
+        }
+
+        .right h2 {
+            color: #176b45;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #777;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #333;
+            font-size: 14px;
+        }
+
+        input, select {
+            width: 100%;
+            padding: 13px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 7px;
+            outline: none;
+            font-size: 14px;
+        }
+
+        input:focus, select:focus {
+            border-color: #21965d;
+        }
+
+        .password-box {
+            position: relative;
+        }
+
+        .password-box input {
+            padding-right: 65px;
+        }
+
+        .toggle {
+            position: absolute;
+            right: 12px;
+            top: 13px;
+            border: none;
+            background: none;
+            color: #176b45;
+            cursor: pointer;
+        }
+
+        .forgot {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 22px;
+        }
+
+        .forgot a, .register a {
+            color: #16834f;
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .login-btn {
+            width: 100%;
+            padding: 14px;
+            background: #176b45;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .login-btn:hover {
+            background: #105536;
+        }
+
+        .register {
+            text-align: center;
+            margin-top: 25px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        #message {
+            color: #c62828;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        @media(max-width: 700px) {
+            .container {
+                width: 92%;
+                flex-direction: column;
+            }
+
+            .left, .right {
+                width: 100%;
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="left">
+        <div class="icon">🍃</div>
+        <h1>FoodShare AI</h1>
+        <p>
+            Connecting food donors with NGOs and communities
+            through intelligent food surplus allocation.
+            <br><br>
+            Reduce food waste. Fight hunger.
+            Build a sustainable future.
+        </p>
+    </div>
+
+    <div class="right">
+        <h2>Welcome Back!</h2>
+        <p class="subtitle">Login to your FoodShare AI account</p>
+
+        <form id="loginForm">
+
+            <label>Email Address</label>
+            <input type="email" id="email"
+                placeholder="Enter your email" required>
+
+            <label>Password</label>
+            <div class="password-box">
+                <input type="password" id="password"
+                    placeholder="Enter your password" required>
+                <button type="button" class="toggle"
+                    onclick="togglePassword()">Show</button>
+            </div>
+
+            <label>Login As</label>
+            <select id="role" required>
+                <option value="">Select your role</option>
+                <option value="Donor">Food Donor</option>
+                <option value="NGO">NGO / Receiver</option>
+                <option value="Admin">Administrator</option>
+            </select>
+
+            <div class="forgot">
+                <a href="#" onclick="alert('Please contact the administrator to reset your password.')">Forgot Password?</a>
+            </div>
+
+            <p id="message"></p>
+
+            <button type="submit" class="login-btn">
+                Login
+            </button>
+
+        </form>
+
+        <div class="register">
+            Don't have an account?
+            <a href="#" onclick="alert('Registration page coming soon!')">
+                Register Here
+            </a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    function togglePassword() {
+        const password = document.getElementById("password");
+        const button = document.querySelector(".toggle");
+
+        if (password.type === "password") {
+            password.type = "text";
+            button.textContent = "Hide";
+        } else {
+            password.type = "password";
+            button.textContent = "Show";
+        }
+    }
+
+    document.getElementById("loginForm").addEventListener("submit",
+        function(event) {
+            event.preventDefault();
+
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
+            const role = document.getElementById("role").value;
+
+            if (email && password && role) {
+                document.getElementById("message").style.color = "green";
+                document.getElementById("message").textContent =
+                    "Login form submitted successfully! Connect a backend to authenticate.";
+            }
+        }
+    );
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
